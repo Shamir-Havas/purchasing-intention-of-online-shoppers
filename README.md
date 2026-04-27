@@ -1,8 +1,8 @@
 # purchasing-intention-of-online-shoppers
 Problem Statement
-Majestic merupakan suatu perusahaan E-commerce (marketplace) yang menyediakan berbagai macam kebutuhan untuk pelanggan.
-Pada satu tahun terakhir, perusahaan hanya menghasilkan Conversion Rate sebesar 15% dari pelanggan yang mengunjungi website.
-Pada masa pandemi (2020-2021) menurut data Digital Experience Benchmark Report, Conversion Rate diberbagai industri E-commerce mengalami peningkatan rata-rata sebesar 28% dikarenakan secara signifikan kebiasaan pelanggan untuk berbelanja beralih ke sistem online. Hal ini akan menjadi suatu kesempatan besar bagi perusahaan untuk meningkatkan revenue.
+Majestic is an e-commerce (marketplace) company that provides a wide range of products for customers.
+Over the past year, the company has achieved a conversion rate of only 15% from visitors to its website.
+During the pandemic period (2020–2021), according to data from the Digital Experience Benchmark Report, conversion rates across various e-commerce industries increased by an average of 28%, due to a significant shift in customer behavior toward online shopping. This presents a major opportunity for the company to increase its revenue.
 
 
 Gambar 1 – Rata-rata Conversion Rate untuk Industri E-commerce
