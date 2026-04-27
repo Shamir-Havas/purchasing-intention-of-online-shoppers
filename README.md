@@ -21,94 +21,79 @@ Business Metric
 
 Revenue Conversion Rate
 
-📂 Stage 1 : Exploratory Data Analysis
-Dataset
-Tabel 1 – Ringkasan Dataset
+📂 Stage 1: Exploratory Data Analysis
 
+Dataset
+Table 1 – Dataset Summary
 
 Descriptive Statistics
 
-Gambar 2 – Distribusi Dataset
+Figure 2 – Dataset Distribution
+Figure 3 – Dataset Distribution with Boxplot
 
+The results of descriptive statistical analysis for numerical features are as follows:
 
+The overall data distribution tends to be positively skewed (Mean > Median). Features such as Administrative, Administrative_Duration, Informational, Informational_Duration, ProductRelated, ProductRelated_Duration, BounceRate, and PageValues have long distribution tails with values concentrated around 0. Based on these conditions and boxplot analysis, most features contain outliers.
 
-Gambar 3 – Distribusi Dataset dengan Boxplot
+Meanwhile, the descriptive statistical analysis for categorical features shows:
 
-
-Hasil analisi statistik deskriptif untuk fitur-fitur numerikal adalah sebagai berikut :
-
-Distribusi data secara keseluruhan cenderung positively-skewed (Mean > Median).
-Administrative, Administrative_Duration, Informational, Informational_Duration, ProductRelated, ProductRelated_Duration, BounceRate, PageValues memiliki ekor distribusi yang pang panjang dengan nilai yang menumpuk disekitar angka 0.
-Dari kedua kondisi diatas dan dari analisa menggunakan boxplot mayoritas fitur memiliki outlier.
-
-Sedangkan hasil analisis statistik deskriptif untuk fitur-fitur kategorikal adalah sebagai berikut.
-
-Beberapa fitur memiliki nilai yang telah di encoding seperti OperatingSystems, Browser, Region, dan TrafficType, sehingga apabila diperlukan interpretasi nilai maka diperlukan data tambahan.
-Mayoritas pengunjung berasal dari region wilayah 2 dan ketika berselancar di website menggunakan OperatingSystem jenis 2 dengan Browser jenis 1.
-Returning Visitor merupakan pengunjung yang paling dominan. Pada fitur VisitorType ini perlu dilakukan penanganan terhadap nilai Other.
-Terdapat dua bulan yang hilang pada fitur Month yaitu January dan April. Bulan Mei memiliki jumlah pengunjung terbanyak, lalu diikuti dengan bulan November.
+Some features have already been encoded, such as OperatingSystems, Browser, Region, and TrafficType. Therefore, additional data is required if interpretation is needed. Most visitors come from Region 2 and browse the website using Operating System type 2 with Browser type 1. Returning Visitors dominate the traffic. The "Other" value in the VisitorType feature needs to be handled. Two months (January and April) are missing in the Month feature. May has the highest number of visitors, followed by November.
 
 Analysis
 
-Gambar 4 – Heatmap Analisis Multivariat
+Figure 4 – Multivariate Analysis Heatmap
 
+Correlation analysis results between features:
 
-Hasil analisis korelasi antar fitur adalah sebagai berikut:
+PageValues has a strong positive correlation with the target variable (Revenue). The higher the PageValues, the higher the likelihood of purchase. Meanwhile, BounceRates and ExitRates have a negative correlation with Revenue, meaning lower values increase revenue likelihood.
 
-PageValues memiliki korelasi yang tinggi terhadap fitur target yaitu Revenue. Semakin tinggi nilai PageValue, maka semakin tinggi juga kemungkinan pelanggan untuk membeli.
-Sedangkan BounceRates dan ExitRates memiliki nilai korelasi negatif terhadap Revenue, artinya semakin kecil nilai kedua fitur tersebut maka revenue akan semakin tinggi.
-Beberapa fitur yang memiliki multikorenialitas diantaranya adalah :
-ProductRelated dengan ProductRelated_Duration
-Adminisitrative dengan Adminisitrative_Duration
-Informational dengan Informational_Duration
-BounceRates dengan ExitRates
+Some features exhibit multicollinearity, including:
 
-Insight
-Revenue Conversion Rate Berdasarkan Visitor Type
+ProductRelated with ProductRelated_Duration
+Administrative with Administrative_Duration
+Informational with Informational_Duration
+BounceRates with ExitRates
+Insight: Revenue Conversion Rate Based on Visitor Type
 
+Figure 5 – Revenue Conversion Rate by Visitor Type
 
-Gambar 5 – Revenue Conversion Rate Berdasarkan Visitor Type
+Around 80% of website visitors are Returning Visitors, indicating the company has successfully retained customers. However, the Revenue Conversion Rate is higher for New Visitors, with about 25% making purchases. In contrast, Returning Visitors have a lower conversion rate.
 
+Further analysis would require additional data such as revenue or profit to determine which visitor type is more valuable. Based on these insights, business recommendations are needed to:
 
-Hampir sebanyak 80% pengunggung website didominasi oleh Returning Visitor. Hal ini dapat menunjukkan bahwa perusahaan E-commerce telah berhasil untuk mempertahankan pelanggan untuk selalu mengunjugi website. Namun Revenue Conversion Rate lebih besar terjadi pada New Visitor, yaitu 25% New Visitor melakukan pembelian. Berbeda dengan Returning Visitor.
-Dibutuhkan data tambahan berupa angka revenue atau profit apabila ingin dilakukan analisa lebih jauh untuk mengetahui pelanggan tipe pengunjung mana yang menghasilkan keuntungan lebih besar bagi perusahaan.
-Dari insight yang ditemukan dibutuhkan rekomendasi bisnis yang tepat untuk meningkatkan Revenue Conversion Rate bagi Returning Visitor dan juga untuk meningkatkan jumlah New Visitor.
-Total Pengunjung per Bulan berdasarkan Revenue
+Increase conversion for Returning Visitors
+Increase the number of New Visitors
+Total Visitors per Month Based on Revenue
 
+Figure 6 – Total Visitors per Month Based on Revenue
 
-Gambar 6 – Total Pengunjung per Bulan berdasarkan Revenue
+Traffic peaks in May, followed by November. However, despite high traffic, May has a low Revenue Conversion Rate of only 11%. In contrast, November has both high traffic and the highest conversion rate at 25%.
 
+Stage 3: Data Pre-processing
 
-Berdasarkan grafik analisis diatas dapat dilihat bahwa trafik kunjungan pelanggan, memiliki jumlah pengunjung yang paling tinggi pada bulan Mei dan selanjutnya disusul dengan bulan November.
-Namun pada bulan Mei tingginya trafik tidak diikuti dengan tingginya angka Revenue Conversion Rate yang hanya menghasilkan 11%, angka ini masih cukup rendah dibandingkan dengan bulan-bulan lainnya. Sedangkan November merupakan bulan yang memiliki cukup banyak pengunjung dengan nilai Revenue Conversion Rate bulanan yang paling tinggi, yaitu mencapai 25%.
+Figure 7 – Data Pre-processing Workflow
 
-📂 Stage 3 : Data Pre-processing
-Workflow Data Pre-processing
+Handling Missing and Duplicate Values
+"Other" in VisitorType is replaced with the most frequent value: "Returning Visitor"
+125 duplicate records were found and removed
+Handling Outliers
+Outliers account for 17.90% (Z-score analysis), which is significant
+Outliers are retained, assuming they are not due to data errors
+Feature Transformation
+Log transformation is not used due to many zero values
+PowerTransformer (Yeo-Johnson) is applied to normalize skewed data
+Feature Encoding
+VisitorType and Revenue are encoded using One Hot Encoding
+Feature Extraction
 
+New features created:
 
-Gambar 7 – Workflow Data Pre-Processing
+Duration per Administrative Page
+Duration per Informational Page
+Duration per ProductRelated Page
+Feature Selection
 
-
-1. Handling Nilai dan Duplikat
-Nilai 'Other' pada fitur VisitorType diubah kedalam nilai dengan frekuensi terbanyak yaitu menjadi 'Returning Visitor'.
-Terdapat 125 data yang duplikat. Hanya diambil satu data untuk masing-masing duplikat.
-2. Handling Outlier
-Presentase outlier menggunakan analisis Z-Score dalam data adalah 17.90%, nilai tersebut cukup besar, maka outlier tidak dihilangkan. Tidak dilakukan handle outlier ini juga kerana diasumsikan bukan dari kesalahan dalam pengambilan data.
-
-3. Feature Transformation
-Transformasi feature tidak menggunakan log karena data memiliki banyak value dengan nilai 0. PowerTransformer Yeo-Johnson dipilih karena dapat digunakan pada data yang distribusi awalnya positively/negatively-skewed, untuk membuat distribusinya menjadi lebih mendekati normal (Guassian), dan mendukung value data memiliki nilai positif atau negatif.
-
-4. Feature Encoding
-Fitur VisitorType dan Revenue dilakukan One Hot Encoding.
-
-5. Feature Extraction
-Membuat fitur baru dari fitur yang sudah ada, diantaranya adalah:
-
-Duration Page Per Administrative
-Duration Page Per Informational
-Duration Page Per Product Related
-6. Feature Selection
-Pada tahap ini dilakukan seleksi fitur yang memiliki korelasi terhadap revenue, menghilangkan fitur yang redundan dan kurang relavan terhadap performa model. Fitur-fitur yang dipilih antara lain adalah :
+Selected features based on relevance:
 
 Duration per Page Administrative
 Duration per Page Informational
@@ -118,94 +103,71 @@ PageValues
 SpecialDay
 VisitorType_Returning_Visitor
 Revenue_True
-7. Splitting Data Train dan Test
-Splitting dataset train dan test dilakukan dengan proporsi 70 : 30.
+Train-Test Split
+Data split: 70% training, 30% testing
+Handling Class Imbalance
+SMOTE applied to training data
+Stage 4: Modeling and Evaluation
 
-8. Handling Class Imbalance
-Dikarenakan jumlah kelas antar fitur target cukup besar maka Handling Class Imbalance dilakukan pada data train dengan menggunakan metode SMOTE.
+Random Forest with hyperparameter tuning is selected as the best model.
 
+Evaluation
 
-📂 Stage 4 : Modeling and Evaluation
-Berdasarkan beberapa algoritma yang telah diterapkan untuk uji coba performa model, algoritma Random Forest yang telah dilakukan Hyperparameter Tuning dipilih untuk diterapkan.
+ROC-AUC is used to measure model performance (TPR vs FPR).
 
-Random Forest : Modeling and Evaluation
-ROC-AUC dipilih sebagai matriks evaluasi ntuk mengetahui sejauh mana model klasifikasi memisahkan pengunjung mana yang diprediksi membeli dan tidak. Metrik ROU-AUC ini diplot dengan dua matriks yang dibandingkan satu sama lain yaitu TPR (True Positive Rate atau Recall) dan FPR (False Positive Rate).
+Table 2 – Random Forest Evaluation Results
+Figure 8 – Confusion Matrix
 
-Tabel 2 – Hasil Evaluasi Matriks Random Forest dengan Hyperparameter Tuning
+The model achieves an ROC-AUC score of 0.90, indicating strong performance.
 
+Feature Importance (SHAP Analysis)
 
+Figure 9 – SHAP Feature Importance Bar Plot
 
+Top 3 most influential features:
 
-Gambar 8 – Confussion Matrix Random Forest dengan Hyperparameter Tuning
+PageValues
+ExitRates
+ProductRelated
 
+Figure 10 – SHAP Beeswarm Plot
 
-Model yang sangat baik memiliki ROC-AUC mendekati 1 yang berarti memiliki ukuran keterpisahan yang baik. Menurut Gorunescu (2011), nilai ROC-AUC juga dapat di klasifikasikan sebagai berikut:
+Higher PageValues and ProductRelated → positive impact on purchase prediction
+Higher ExitRates → negative impact
+Stage 5: Business Insights & Recommendations
+PageValues Insight
 
-Tabel 2 – Hasil Evaluasi Metriks Random Forest dengan Hyperparameter Tuning
+Figure 11 – PageValues Distribution
+Table 3 – PageValues vs Conversion Rate
 
+Visitors who purchase tend to visit pages with higher PageValues. Conversion can reach 56% when PageValues > 0, showing strong correlation.
 
+ExitRates Insight
 
-Nilai ROC-AU dari Random Forest didapatkan hasil sebesar 0.90 yang berarti model memiliki performa yang sudah baik.
+Figure 12 – ExitRates Distribution
 
-Random Forest : Feature Importances
-Selanjutnya, untuk mengetahui seberapa fitur-fitur berpengaruh terhadap model prediksi, dilakukan analisis menggunakan SHAP Value. Berikut ini hasil dari urutan fitur-fitur (feature importance) yang memiliki pengaruh paling tinggi hingga yang paling rendah pengaruhnya terhadap model prediksi.
+Buyers tend to have lower ExitRates. The maximum observed value is 20%, which is acceptable compared to the industry average (<25%).
 
+ProductRelated Insight
 
-Gambar 9 – Grafik Feature Importance Menggunakan Barplot SHAP Value
+Figure 13 – ProductRelated Distribution
 
+Average page views across industries: 5
+ProductRelated page views exceed this average
+Spending at least 50 seconds on a product page increases purchase probability
+Machine Learning Prediction Workflow
 
-Grafik ini memperhitungkan nilai SHAP absolut, jadi tidak masalah jika fitur mempengaruhi prediksi secara positif atau negatif.
-Tiga fitur yang paling mempengaruhi adalah PageValues, ExitRates, dan ProductRelated.
+Figure 14 – Early Purchase Prediction Workflow
 
-Pada grafik beeswram dapat diketahui bagaimana nilai yang lebih tinggi atau lebih rendah dari fitur tersebut akan mempengaruhi hasil prediksi.
+This workflow predicts whether a visitor will purchase before the transaction occurs.
 
-
-Gambar 10 – Grafik Summaryplot Beeswarm SHAP Value
-
-
-PageValues dan ProductRelated yang memiliki nilai lebih tinggi akan memiliki dampak positif terhadap prediksi (berkorelasi positif terhadap target). Dapat diinterpretasikan bahwa, semakin besar nilai pada PageValues dan ProductRelated maka kecenderungan model untuk memprediksi target positif (pengunjung yang membeli) akan semakin besar.
-Sedangkan untuk ExitRates, apabila memiliki nilai yang lebih tinggi maka akan berdampak negatif pada prediksi (berkorelasi negatif terhadap target). Jadi semakin kecil nilai ExitRates-nya, maka model memprediksi pengunjung yang membeli akan semakin besar.
-
-📂 Stage 5 : Business Insight and Recomendation
-Business Insight - PageValues
-
-Gambar 11 – Distribusi PageValues
-
-Tabel 3 – Persentase PageValues berdasarkan Revenue Conversion Rate
-
-
-
-Pengunjung yang melakukan pembelian cenderung mengunjungi halaman website dengan nilai PageValues yang lebih besar dibandingkan dengan pengunjung yang tidak melakukan pembelian.
-Nilai Revenue Conversion Rate pada PageValues yang memiliki nilai lebih dari 0 dapat mencapai 56%. Dari hal tersebut PageValues ini memilki korelasi yang kuat terhadap target.
-
-Business Insight - ExitRates
-
-Gambar 12 – Distribusi ExitRates
-
-
-Pengunjung yang melakukan pembelian cenderung memiliki nilai ExitRates yang lebih rendah dibandingkan dengan pengunjung yang tidak melakukan pembelian.
-Dari analisis dapat dilihat bahwa nilai maksimal ExitRates adalah 20%. Menurut sumber rata-rata Exit Rates untuk sebuah website e-commerce berada dibawah 25%. Jadi, nilai Exit Rates tersebut masih dapat diterima.
-
-Business Insight - Product Related
-
-Gambar 13 – Distribusi ExitRates
-
-
-Menurut sumber, rata-rata page views untuk website seluruh industri adalah 5. Berdasarkan hal tersebut, nilai page views ProductRelated sebagian besar sudah melebihi dari rata-rata.
-Probabilitas pengunjung untuk melakukan pembelian dapat menjadi tinggi apabila pengunjung tersebut menghabiskan waktu paling tidak 50 detik pada sebuah halaman produk.
-
-Mechine Learning Prediction Workflow
-Beikut ini adalah Workflow dari Early Purchase Prediction yaitu machine learning untuk memprediksi pengunjung untuk membeli atau tidak sebelum pengunjung melakukan pembelian.
-
-
-Gambar 14 – Mechine Learning Prediction Workflow
-
-
-Business Recomendation
-Rekomendasi Bisnis Berdasarkan Mechine Learning
-Pemberian notifikasi rekomendasi laman produk untuk jenis yang sama dengan PageValues yang lebih tinggi. PageValues yang tinggi ini dapat dimaksimalkan dengan konten dan kegunaan pada halaman-halaman serta peringkat yang baik untuk produk. Dari hal tersebut diharapkan dapat meningkatkan nilai Revenue Conversion Rate.
-Rekomendasi Bisnis Berdasarkan Insight
-Pemberian promosi dan pengadaan event pada bulan-bulan tertentu yang memiliki trafik tinggi atau Revenue Corversion Rate yang tinggi (Mei, Maret, November, dan Desember).
-Dikarenakan persentase revenue New Visitor lebih besar (25%) dibandingkan Returning Visitor (14%), maka direkomendasikan untuk meningkatkan trafik untuk New Visitor, dengan cara:
-Pemberian diskon khusus pengguna baru
-Melakukan iklan di beberapa media untuk meningkatkan awareness masyarakat terhadap E-Commerce ini.
+Business Recommendations
+Based on Machine Learning
+Provide product recommendations with higher PageValues
+Improve page quality, content, and product ranking
+Aim to increase Revenue Conversion Rate
+Based on Insights
+Run promotions and events during high-traffic/high-conversion months (May, March, November, December)
+Increase New Visitor traffic (since their conversion is higher at 25%) by:
+Offering special discounts for new users
+Running advertisements to increase brand awareness
