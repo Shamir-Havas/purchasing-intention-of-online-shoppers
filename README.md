@@ -7,14 +7,21 @@ During the pandemic period (2020–2021), according to data from the Digital Exp
 
 Gambar 1 – Rata-rata Conversion Rate untuk Industri E-commerce
 
+Figure 1 – Average Conversion Rate for the E-commerce Industry
+
 Objectives
-Mendapatkan insight mengenai pola kebiasaan pelanggan dalam berselancar di website.
-Memprediksi pengunjung yang memiliki kecenderungan membeli atau tidak.
-Memberikan bisnis rekomendasi yang tepat guna meningkatkan kecenderungan pelanggan untuk membeli.
+
+To gain insights into customer behavior patterns while browsing the website.<br>
+To predict whether visitors have a tendency to make a purchase or not.<br>
+To provide appropriate business recommendations to increase customers’ likelihood of purchasing.
+
 Goals
-Membuat model machine learning yang dapat memprediksi customer yang berpeluang menghasilkan revenue.
-Diharapkan model dapat menigkatkan Revenue Conversion Rate sebesar 28%.
-Business Matrics
+
+To build a machine learning model that can predict customers with the potential to generate revenue.
+The model is expected to increase the Revenue Conversion Rate by 28%.
+
+Business Metric
+
 Revenue Conversion Rate
 
 📂 Stage 1 : Exploratory Data Analysis
