@@ -1,7 +1,7 @@
 # purchasing-intention-of-online-shoppers
 Problem Statement
-Majestic is an e-commerce (marketplace) company that provides a wide range of products for customers.
-Over the past year, the company has achieved a conversion rate of only 15% from visitors to its website.
+Majestic is an e-commerce (marketplace) company that provides a wide range of products for customers. br
+Over the past year, the company has achieved a conversion rate of only 15% from visitors to its website.br
 During the pandemic period (2020–2021), according to data from the Digital Experience Benchmark Report, conversion rates across various e-commerce industries increased by an average of 28%, due to a significant shift in customer behavior toward online shopping. This presents a major opportunity for the company to increase its revenue.
 
 
