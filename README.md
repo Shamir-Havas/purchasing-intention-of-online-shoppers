@@ -221,13 +221,7 @@ BUSINESS INSIGHTS & RECOMMENDATIONS
 
 ## 📁 PROJECT STRUCTURE
 
-```text
 online-shoppers-purchasing-intention/
-│
-├── notebooks/
-│   ├── 01_eda.ipynb
-│   ├── 02_preprocessing.ipynb
-│   └── 03_modeling.ipynb
 │
 ├── images/
 │   ├── shap_feature_importance.png
@@ -235,8 +229,11 @@ online-shoppers-purchasing-intention/
 │   ├── visitor_type_conversion.png
 │   └── monthly_traffic_conversion.png
 │
+├── stage 1 - eda.ipynb
+├── stage 2 - Preprocessing .ipynb
+├── stage 3 - Modeling .ipynb
+│
 └── README.md
-```
 
 ---
 
