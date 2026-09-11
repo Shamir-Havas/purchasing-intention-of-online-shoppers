@@ -1,223 +1,232 @@
-# 🛒 Online Shoppers Purchasing Intention
+🛒 ONLINE SHOPPERS PURCHASING INTENTION
 
----
+Predicting whether an online visitor is likely to make a purchase
 
-## 📌 Stage 0: Problem Statement
+An end-to-end EDA → Preprocessing → Feature Engineering → Machine Learning → Model Interpretation → Business Recommendations project.
 
-Majestic is an e-commerce marketplace that provides a wide range of products for customers.  
-Over the past year, the company has achieved a conversion rate of only **15%** from website visitors.
+📌 PROJECT OVERVIEW
 
-During the pandemic period (2020–2021), according to the *Digital Experience Benchmark Report*, e-commerce conversion rates increased by an average of **28%**, driven by a significant shift in customer behavior toward online shopping. This presents a major opportunity for the company to increase revenue.
+Majestic is an e-commerce marketplace with a 15% website conversion rate. This project analyzes online visitor behavior and develops a machine learning approach to identify sessions with higher purchase potential.
 
----
+🎯 OBJECTIVES
 
-## 🎯 Objectives
-- Gain insights into customer browsing behavior on the website  
-- Predict whether a visitor is likely to make a purchase  
-- Provide business recommendations to improve conversion rates  
+UNDERSTAND customer browsing behavior
 
----
+IDENTIFY factors associated with purchasing
 
-## 🚀 Goals
-- Build a machine learning model to predict high-potential customers  
-- Increase Revenue Conversion Rate by **28%**
+PREDICT purchase intention
 
----
+TRANSLATE model findings into business recommendations
 
-## 📊 Business Metric
-- **Revenue Conversion Rate**
+📊 BUSINESS METRIC
 
----
+Revenue Conversion Rate
 
-## 📂 Stage 1: Exploratory Data Analysis (EDA)
+📂 DATASET
 
-### 📁 Dataset Overview
-Table 1 – Dataset Summary  
+12,330 online shopping sessions
 
----
+18 features
 
-### 📊 Descriptive Statistics
+Target: Revenue
 
-Figure 2 – Dataset Distribution  
-Figure 3 – Dataset Distribution with Boxplot  
+125 duplicate records identified and removed
 
-#### Key Findings (Numerical Features):
-- Data distribution is **positively skewed (Mean > Median)**  
-- Features such as Administrative, Informational, ProductRelated, and their durations have long-tailed distributions  
-- Many features contain **outliers**, confirmed by boxplot analysis  
+Class imbalance addressed during preprocessing
 
-#### Key Findings (Categorical Features):
-- Some variables are already encoded (OperatingSystems, Browser, Region, TrafficType)  
-- Most visitors come from **Region 2**  
-- Most users browse using **Operating System 2** and **Browser 1**  
-- **Returning Visitors dominate traffic**  
-- “Other” category in VisitorType requires handling  
-- Missing months: **January and April**  
-- Highest traffic months: **May**, followed by **November**
+🔍 EXPLORATORY DATA ANALYSIS
 
----
+KEY FINDINGS
 
-## 📈 Analysis
+Numerical variables are generally positively skewed with long-tailed distributions.
 
-Figure 4 – Multivariate Correlation Heatmap  
+Many numerical features contain outliers.
 
-### Key Insights:
-- **PageValues** has a strong positive correlation with Revenue  
-- **BounceRates** and **ExitRates** are negatively correlated with Revenue  
-- Lower values of these features increase the likelihood of purchase  
+Returning Visitors dominate traffic.
 
-### Multicollinearity detected in:
-- ProductRelated ↔ ProductRelated_Duration  
-- Administrative ↔ Administrative_Duration  
-- Informational ↔ Informational_Duration  
-- BounceRates ↔ ExitRates  
+New Visitors show a higher conversion rate of approximately 25%.
 
----
+May has the highest traffic, while November shows the strongest conversion performance at approximately 25%.
 
-## 👥 Insight: Revenue Conversion Rate by Visitor Type
+PageValues has a strong positive relationship with Revenue.
 
-Figure 5 – Conversion Rate by Visitor Type  
+BounceRates and ExitRates show negative relationships with Revenue.
 
-- ~80% of visitors are **Returning Visitors**  
-- However, **New Visitors have higher conversion rates (~25%)**  
+⚠️ MULTICOLLINEARITY
 
-### Insight:
-- Returning Visitors dominate traffic but convert less  
-- New Visitors convert better but are fewer in number  
-- Additional revenue/profit data is needed for deeper analysis  
+ProductRelated ↔ ProductRelated_Duration
 
----
+Administrative ↔ Administrative_Duration
 
-## 📅 Total Visitors per Month
+Informational ↔ Informational_Duration
 
-Figure 6 – Monthly Visitor Distribution  
+BounceRates ↔ ExitRates
 
-- Highest traffic: **May**, followed by **November**  
-- May has low conversion rate (**11%**) despite high traffic  
-- November shows the best performance with **25% conversion rate**
+⚙️ DATA PREPROCESSING
 
----
+🧹 DATA CLEANING
 
-# 📂 Stage 3: Data Pre-processing
+Replaced "Other" VisitorType with "Returning Visitor"
 
-Figure 7 – Data Pre-processing Workflow  
+Removed 125 duplicate records
 
-## 🧹 1. Handling Missing & Duplicate Values
-- “Other” in VisitorType → replaced with “Returning Visitor”  
-- 125 duplicate records removed  
+Investigated outliers using Z-score analysis
 
-## 📉 2. Handling Outliers
-- Outliers = **17.90% (Z-score analysis)**  
-- Retained as they are assumed not to be data errors  
+Retained identified outliers where they were considered valid observations
 
-## 🔄 3. Feature Transformation
-- Yeo-Johnson Power Transformation used  
-- Handles skewed distributions and zero values effectively  
+🔄 TRANSFORMATION & FEATURE ENGINEERING
 
-## 🏷️ 4. Feature Encoding
-- One-Hot Encoding applied to:
-  - VisitorType  
-  - Revenue  
+Applied Yeo-Johnson Power Transformation to address skewness
 
-## 🔧 5. Feature Engineering
-New features created:
-- Duration per Administrative Page  
-- Duration per Informational Page  
-- Duration per Product Page  
+Applied One-Hot Encoding to categorical variables
 
-## 🎯 6. Feature Selection
-Final features used:
-- Administrative Duration per Page  
-- Informational Duration per Page  
-- ProductRelated  
-- ExitRates  
-- PageValues  
-- SpecialDay  
-- VisitorType_Returning_Visitor  
-- Revenue_True  
+Created duration-per-page features for:
 
-## ✂️ 7. Train-Test Split
-- 70% training / 30% testing  
+Administrative pages
 
-## ⚖️ 8. Class Imbalance Handling
-- SMOTE applied to training data  
+Informational pages
 
----
+Product pages
 
-# 📂 Stage 4: Modeling & Evaluation
+Reduced redundancy caused by highly correlated variables
 
-## 🤖 Model Used
-- Random Forest (with Hyperparameter Tuning)
+⚖️ TRAINING SETUP
 
-## 📊 Evaluation Metric
-- ROC-AUC Score used for classification performance  
+70% Training / 30% Testing
 
-### Result:
-- **ROC-AUC = 0.90** → Strong model performance  
+SMOTE applied to the training data
 
-Figure 8 – Confusion Matrix  
+🤖 MACHINE LEARNING MODEL
 
----
+Multiple classification approaches were evaluated, with Random Forest selected as the final model after hyperparameter tuning.
 
-## 🌟 Feature Importance (SHAP Analysis)
+🏆 MODEL PERFORMANCE
 
-Top 3 features:
-1. PageValues  
-2. ExitRates  
-3. ProductRelated  
+METRIC
 
-### Insights:
-- Higher **PageValues** → higher purchase probability  
-- Higher **ProductRelated** → positive impact  
-- Higher **ExitRates** → negative impact  
+RESULT
 
----
+ROC-AUC
 
-# 📂 Stage 5: Business Insights & Recommendations
+0.90
 
-## 📌 PageValues Insight
-Figure 11 – PageValues Distribution  
+ROC-AUC = 0.90 indicates strong ability to distinguish between purchasing and non-purchasing sessions.
 
-- Higher PageValues strongly correlate with purchases  
-- Conversion rate reaches **56% when PageValues > 0**
+🌟 MODEL INTERPRETATION — SHAP
 
----
+SHAP analysis was used to understand which features most influenced model predictions.
 
-## 📌 ExitRates Insight
-Figure 12 – ExitRates Distribution  
+🔝 TOP 3 FEATURES
 
-- Buyers tend to have lower ExitRates  
-- Maximum ExitRate (~20%) is within acceptable industry range (<25%)
+PageValues
 
----
+ExitRates
 
-## 📌 ProductRelated Insight
-Figure 13 – ProductRelated Distribution  
+ProductRelated
 
-- Average page views benchmark: **5**  
-- Product pages exceed this benchmark  
-- Users spending **≥50 seconds** on product pages have higher purchase probability  
+💡 MODEL INSIGHTS
 
----
+Higher PageValues → stronger purchase signal
 
-## 🔮 Machine Learning Prediction Workflow
+Higher ProductRelated activity → positive contribution toward purchase prediction
 
-Figure 14 – Early Purchase Prediction Workflow  
+Higher ExitRates → negative contribution toward purchase prediction
 
-A system designed to predict purchasing intent before the actual transaction occurs.
+💼 BUSINESS INSIGHTS
 
----
+💰 PAGEVALUES
 
-# 📢 Business Recommendations
+Higher PageValues are strongly associated with purchases.
 
-## 🤖 Based on Machine Learning Model
-- Recommend products with higher PageValues  
-- Improve product page quality and ranking  
-- Optimize content to increase engagement  
+Conversion reaches approximately 56% when PageValues > 0.
 
-## 📊 Based on Business Insights
-- Run campaigns during high-performing months:
-  - May, March, November, December  
-- Increase New Visitor acquisition:
-  - Offer first-time user discounts  
-  - Increase marketing and advertising efforts  
+🚪 EXIT RATES
+
+Buyers tend to have lower ExitRates.
+
+🛍️ PRODUCT ENGAGEMENT
+
+Product pages receive substantial visitor activity.
+
+Sessions with ≥50 seconds spent on product pages show higher purchase probability in the analysis.
+
+👥 VISITOR TYPE
+
+Returning Visitors dominate traffic.
+
+New Visitors convert at a higher rate but represent a smaller share of traffic.
+
+📢 BUSINESS RECOMMENDATIONS
+
+🤖 MODEL-DRIVEN
+
+Prioritize products and sessions associated with higher PageValues.
+
+Improve product-page quality and ranking.
+
+Optimize content to increase visitor engagement.
+
+📊 DATA-DRIVEN
+
+Focus campaigns around high-performing months, including May, March, November, and December.
+
+Increase New Visitor acquisition through targeted marketing.
+
+Consider first-time visitor offers or discounts to encourage conversion.
+
+🔄 PROJECT WORKFLOW
+
+RAW DATA
+   ↓
+EXPLORATORY DATA ANALYSIS
+   ↓
+DATA CLEANING
+   ↓
+FEATURE ENGINEERING
+   ↓
+TRANSFORMATION & ENCODING
+   ↓
+SMOTE / TRAIN-TEST SPLIT
+   ↓
+RANDOM FOREST + HYPERPARAMETER TUNING
+   ↓
+MODEL EVALUATION
+   ↓
+SHAP INTERPRETATION
+   ↓
+BUSINESS INSIGHTS & RECOMMENDATIONS
+
+🛠️ TECHNOLOGIES
+
+Python
+
+Pandas
+
+NumPy
+
+Matplotlib
+
+Seaborn
+
+Scikit-learn
+
+XGBoost
+
+SHAP
+
+Jupyter Notebook
+
+📁 PROJECT STRUCTURE
+
+online-shoppers-purchasing-intention/
+│
+├── notebooks/
+│   ├── 01_eda.ipynb
+│   ├── 02_preprocessing.ipynb
+│   └── 03_modeling.ipynb
+│
+└── README.md
+
+🎯 KEY TAKEAWAY
+
+This project demonstrates an end-to-end machine learning workflow for an e-commerce purchase-intention problem — from understanding visitor behavior and preparing the data to building a predictive model, interpreting its decisions, and converting the findings into actionable business recommendations
